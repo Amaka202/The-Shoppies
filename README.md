@@ -1,3 +1,19 @@
+ This repo contains my solution to the Netlify Interns Challenge
+ 
+ A webpage that a user can search OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they should be notified they're finished.
+
+A simple to use interface that makes it easy to:
+Search OMDB and display the results (movies only)
+Add a movie from the search results to our nomination list
+View the list of films already nominated
+Remove a nominee from the nomination list
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
