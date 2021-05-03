@@ -26,11 +26,21 @@ export const getMovies = (searchWord) => {
             })
     }
 }
-export const ADD_TO_NOM_LIST = 'ADD_TO_NOM_LIST';
 
 export const addMovieToNomList = (movieObj) => {
-    return {
-        type: ADD_TO_NOM_LIST,
-        payload: movieObj
+    return (dispatch) => {
+        dispatch({
+            type: 'ADD_TO_NOM_LIST',
+            payload: movieObj
+        })
+    }
+}
+
+export const removeMovieFromNomList = (movieId) => {
+    return (dispatch) => {
+        dispatch({
+            type: 'ADD_TO_NOM_LIST',
+            payload: movieId
+        })
     }
 }

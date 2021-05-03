@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux';
-import {getMovies} from '../store/actions/action'
+import { addMovieToNomList} from '../store/actions/action'
 
-function DisplayMovies({moviesData}) {
+function DisplayMovies({moviesData, addMovieToNomList}) {
     let nominationList = JSON.parse(localStorage.getItem('nominationList'))
     
     const checkIfNominated = (movieId) => {
@@ -10,13 +10,9 @@ function DisplayMovies({moviesData}) {
       return nominationList.some(movie => movie.movieId === movieId)
     }
 
-    const handleNominate = (movieId, title, year) => {
-            nominationList = nominationList ? nominationList : [];
-            nominationList.push({movieId: movieId, title: title, year: year})
-            localStorage.setItem('nominationList', JSON.stringify(nominationList));
-            // localStorage.removeItem('nominationList');
-
-    }
+    // const handleNominate = (movieId, title, year) => {
+    //   addMovieToNomList({movieId, title, year})
+    // }
 
     return (
         <div>
@@ -34,12 +30,12 @@ function DisplayMovies({moviesData}) {
                           <p>{val.Title}</p>
                         </a>
                           <p>{val.Year}</p>
-                          
-                          {
+                          <p onClick={() => addMovieToNomList({movieId: val.imdbID, title: val.Title, year: val.Year})}>Nominate</p>
+                          {/* {
                             nominationList.some(movie => movie.movieId === val.imdbID)
                             ? <p>Nomitated please</p>
                             : <p onClick={() => handleNominate(val.imdbID, val.Title, val.Year)}>Nominate</p>
-                          }
+                          } */}
                       </div>
                   )
               })
@@ -55,4 +51,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(DisplayMovies);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addMovieToNomList: (movieObj) => dispatch(addMovieToNomList(movieObj))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayMovies);

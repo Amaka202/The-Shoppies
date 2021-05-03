@@ -19,12 +19,14 @@ const moviesReducer = (state = iniState, action) => {
                 localStorage.setItem('nominationList', JSON.stringify(nominationList));
                 return {
                     ...state,
-                    addToListStatus: 'success'
+                    addToListStatus: 'success',
+                    timeAdded: new Date()
                 }     
             }else{
                 return {
                     ...state,
-                    addToListStatus: 'error'
+                    addToListStatus: 'error',
+                    timeofError: new Date()
                 } 
             }
         default:
