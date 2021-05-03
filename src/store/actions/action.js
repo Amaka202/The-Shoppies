@@ -31,16 +31,17 @@ export const addMovieToNomList = (movieObj) => {
     return (dispatch) => {
         dispatch({
             type: 'ADD_TO_NOM_LIST',
-            payload: movieObj
+            movieObj
         })
     }
 }
 
 export const removeMovieFromNomList = (movieId) => {
+    console.log(movieId);
     return (dispatch) => {
         dispatch({
-            type: 'ADD_TO_NOM_LIST',
-            payload: movieId
+            type: 'REMOVE_FROM_NOM_LIST',
+            movieId
         })
     }
 }

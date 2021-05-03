@@ -3,7 +3,7 @@ import 'rsuite/dist/styles/rsuite-default.css';
 
 import SearchMovies from './components/SearchMovies'
 import DisplayMovies from './components/DisplayMovies'
-import Notification from './components/Notification'
+import NominationList from './components/NominationList'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <DisplayMovies />
       </div>
       <div>
-        <Notification />
+        <NominationList />
       </div>
     </>
   );

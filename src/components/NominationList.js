@@ -2,9 +2,18 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux';
 import { removeMovieFromNomList} from '../store/actions/action'
 
-function EditEntry({removeMovieFromNomList}) {
-  let nominationList = JSON.parse(localStorage.getItem('nominationList'))
+function NominationList({removeMovieFromNomList, timeAdded, timeofError, timeRemoved}) {
+  // let nominationList = JSON.parse(localStorage.getItem('nominationList'))
+  const [nominationList, setNominationList] = useState([])
   console.log(nominationList);
+
+  useEffect(() => {
+    let getNominationList = JSON.parse(localStorage.getItem('nominationList'));
+    if(getNominationList){
+      setNominationList(getNominationList)
+    }else return;
+  }, [timeAdded, timeofError, timeRemoved])
+  
     const tableHeader = () => {
       let header = Object.keys(nominationList[0])
       return header.map((key, index) => {
@@ -48,8 +57,12 @@ function EditEntry({removeMovieFromNomList}) {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    //   status: state.entries,
+    addToListStatus: state.addToListStatus,
+    timeAdded: state.timeAdded,
+    timeofError: state.timeofError,
+    timeRemoved: state.timeRemoved
   }
 }
 
@@ -59,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditEntry);
+export default connect(mapStateToProps, mapDispatchToProps)(NominationList);
